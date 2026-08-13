@@ -1,0 +1,14 @@
+﻿.company-site .brand img {
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.company-hero {
+  min-height: 680px;
+}
+
+.company-site .section-heading {
+  margin-bottom: 0;
+}
+
+
