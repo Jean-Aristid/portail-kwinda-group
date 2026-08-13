@@ -1,5 +1,9 @@
 ﻿# Portail de marques
 
+## Site en ligne
+
+[Accéder au portail Kwinda Group](https://jean-aristid.github.io/portail-kwinda-group/)
+
 ## Objectif
 Ce projet est organisé pour être déployé facilement sur un hébergement statique avec un nom de domaine. Le fichier `index.html` reste à la racine, car c'est le point d'entrée attendu quand on visite le domaine.
 
