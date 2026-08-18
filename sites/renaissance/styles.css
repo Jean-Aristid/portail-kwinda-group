@@ -1,0 +1,177 @@
+.renaissance-site {
+  --gold: #c99536;
+  --text: #211a14;
+  background: #fbf7ef;
+}
+
+.renaissance-site .site-header {
+  background: rgba(28, 23, 19, 0.94);
+}
+
+.renaissance-site .brand,
+.renaissance-site .main-nav a {
+  color: #fff8e8;
+}
+
+.renaissance-site .menu-toggle {
+  border-color: rgba(255, 255, 255, 0.25);
+  background: #28211b;
+}
+
+.renaissance-site .menu-toggle span {
+  background: #fff8e8;
+}
+
+.renaissance-site .nav-appointment {
+  padding: 10px 17px;
+  border-radius: 8px;
+  background: var(--gold);
+}
+
+.renaissance-hero {
+  position: relative;
+  min-height: 690px;
+  display: grid;
+  align-items: center;
+  overflow: hidden;
+  background: radial-gradient(circle at 72% 38%, rgba(255, 231, 179, 0.9), transparent 27%), linear-gradient(110deg, #f8f1e5 5%, #ead6b4 57%, #8b6740 140%);
+}
+
+.renaissance-hero-content {
+  position: relative;
+  z-index: 2;
+}
+
+.renaissance-hero h1 {
+  max-width: 700px;
+  font-size: clamp(3.4rem, 7vw, 6.6rem);
+}
+
+.renaissance-hero h1 em {
+  color: var(--gold);
+  font-weight: 600;
+}
+
+.renaissance-hero-content > p:not(.eyebrow) {
+  max-width: 570px;
+  margin-bottom: 34px;
+  font-size: 1.2rem;
+}
+
+.renaissance-mark {
+  position: absolute;
+  right: 5%;
+  color: rgba(255, 255, 255, 0.24);
+  font-family: "Playfair Display", serif;
+  font-size: min(48vw, 620px);
+  line-height: 1;
+}
+
+.renaissance-about-grid {
+  display: grid;
+  grid-template-columns: 0.8fr 1.2fr;
+  gap: clamp(45px, 7vw, 90px);
+  align-items: center;
+}
+
+.renaissance-visual {
+  padding: 35px;
+  border-radius: 28px;
+  background: linear-gradient(145deg, #29211a, #0f0d0b);
+  box-shadow: var(--shadow);
+}
+
+.renaissance-visual img {
+  width: 100%;
+  border-radius: 18px;
+}
+
+.renaissance-values {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+  margin-top: 30px;
+}
+
+.renaissance-values div,
+.renaissance-service-grid article {
+  padding: 24px;
+  border: 1px solid rgba(201, 149, 54, 0.25);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.65);
+}
+
+.renaissance-values strong,
+.renaissance-values span {
+  display: block;
+}
+
+.renaissance-values strong {
+  color: #9d6f20;
+  text-transform: uppercase;
+}
+
+.renaissance-services {
+  background: #f3eadc;
+}
+
+.renaissance-services .section-heading {
+  margin-inline: auto;
+  text-align: center;
+}
+
+.renaissance-service-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.renaissance-service-grid article span {
+  color: var(--gold);
+  font-family: "Playfair Display", serif;
+  font-size: 2rem;
+}
+
+.renaissance-service-grid article p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.renaissance-quote {
+  padding: 70px 0;
+  background: #211b17;
+  color: #f6dfad;
+  text-align: center;
+}
+
+.renaissance-quote blockquote {
+  max-width: 850px;
+  margin: auto;
+  font-family: "Playfair Display", serif;
+  font-size: clamp(1.7rem, 4vw, 3rem);
+}
+
+@media (max-width: 900px) {
+  .renaissance-site .main-nav {
+    background: #211b17;
+  }
+
+  .renaissance-about-grid,
+  .renaissance-values {
+    grid-template-columns: 1fr;
+  }
+
+  .renaissance-service-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 620px) {
+  .renaissance-hero {
+    min-height: 620px;
+  }
+
+  .renaissance-service-grid {
+    grid-template-columns: 1fr;
+  }
+}
