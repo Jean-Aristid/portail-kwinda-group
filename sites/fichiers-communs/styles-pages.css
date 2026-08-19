@@ -91,6 +91,204 @@
   font-weight: 700;
 }
 
+.providers {
+  background: #f4efe4;
+}
+
+.provider-category-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.provider-category {
+  position: relative;
+  padding: 34px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  box-shadow: 0 16px 45px rgba(23, 22, 18, 0.06);
+}
+
+.provider-number {
+  position: absolute;
+  top: 20px;
+  right: 25px;
+  color: rgba(185, 136, 47, 0.18);
+  font-family: "Playfair Display", serif;
+  font-size: 3.5rem;
+  font-weight: 700;
+}
+
+.provider-category h3 {
+  position: relative;
+  padding-right: 55px;
+}
+
+.provider-category ul {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px 22px;
+  margin: 24px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.provider-category li {
+  position: relative;
+  padding-left: 18px;
+  color: var(--muted);
+}
+
+.provider-category li::before {
+  position: absolute;
+  top: 0.65em;
+  left: 0;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--gold);
+  content: "";
+}
+
+.availability-card {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: clamp(35px, 6vw, 75px);
+  align-items: center;
+  padding: clamp(38px, 6vw, 70px);
+  border-radius: var(--radius-lg);
+  background: #1c1914;
+  color: white;
+}
+
+.availability-card p:not(.eyebrow) {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.booking-steps {
+  display: grid;
+  gap: 14px;
+}
+
+.booking-steps span {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  padding: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.booking-steps strong {
+  width: 34px;
+  height: 34px;
+  display: grid;
+  flex: 0 0 auto;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--gold);
+  color: #171612;
+}
+
+.inquiry {
+  background: #f4efe4;
+}
+
+.inquiry-grid {
+  display: grid;
+  grid-template-columns: 0.75fr 1.25fr;
+  gap: clamp(40px, 7vw, 90px);
+  align-items: start;
+}
+
+.inquiry-intro {
+  position: sticky;
+  top: 125px;
+}
+
+.inquiry-intro > p:not(.eyebrow) {
+  color: var(--muted);
+  font-size: 1.08rem;
+}
+
+.inquiry-intro .inquiry-note {
+  padding: 18px;
+  border-left: 3px solid var(--gold);
+  background: rgba(255, 255, 255, 0.55);
+}
+
+.inquiry-form {
+  padding: clamp(28px, 5vw, 50px);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.inquiry-form label {
+  display: grid;
+  gap: 8px;
+  color: #39362f;
+  font-size: 0.94rem;
+  font-weight: 700;
+}
+
+.inquiry-form input,
+.inquiry-form select,
+.inquiry-form textarea {
+  width: 100%;
+  padding: 13px 15px;
+  border: 1px solid rgba(23, 22, 18, 0.17);
+  border-radius: 11px;
+  outline: none;
+  background: #fffdf8;
+  color: var(--text);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.inquiry-form input:focus,
+.inquiry-form select:focus,
+.inquiry-form textarea:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(185, 136, 47, 0.13);
+}
+
+.inquiry-form textarea {
+  resize: vertical;
+}
+
+.form-full {
+  grid-column: 1 / -1;
+}
+
+.inquiry-form .form-consent {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  margin: 25px 0;
+  font-weight: 500;
+}
+
+.form-consent input {
+  width: 18px;
+  flex: 0 0 auto;
+  margin-top: 4px;
+}
+
+.form-help {
+  margin: 12px 0 0;
+  color: var(--muted);
+  font-size: 0.86rem;
+}
+
 @media (max-width: 900px) {
   .service-showcase-grid {
     grid-template-columns: 1fr;
@@ -98,6 +296,27 @@
 
   .service-showcase-grid-reverse .service-showcase-image {
     order: 0;
+  }
+
+  .availability-card,
+  .inquiry-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .inquiry-intro {
+    position: static;
+  }
+}
+
+@media (max-width: 650px) {
+  .provider-category-grid,
+  .provider-category ul,
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .form-full {
+    grid-column: auto;
   }
 }
 

@@ -23,7 +23,7 @@
         <a href="../../index.html">Portail</a>
         <a href="#services">Services</a>
         <a href="#apropos">À propos</a>
-        <a href="#contact">Contact</a>
+        <a href="#renseignements">Renseignements</a>
       </nav>
     </div>
   </header>
@@ -38,9 +38,41 @@
     </section>
     <section class="section" id="services"><div class="container content-panel"><p class="eyebrow">Notre action</p><h2>Faire grandir les connexions professionnelles</h2><p class="content-lead">Innoglobe.blk crée des opportunités, développe les réseaux professionnels et favorise les collaborations internationales.</p><div class="service-tags"><span>Entrepreneuriat</span><span>Innovation</span><span>Réseaux</span><span>Collaborations</span></div></div></section>
     <section class="about section" id="apropos"><div class="container section-heading"><p class="eyebrow">Notre ambition</p><h2>Valoriser les diasporas africaines et afro-descendantes</h2><p>Nous mettons en lumière leurs talents, leurs projets et leur capacité à construire des ponts entre les marchés, les cultures et les territoires.</p></div></section>
-    <section class="contact section" id="contact"><div class="container contact-card"><div><p class="eyebrow">Contact</p><h2>Échanger avec Innoglobe.blk</h2><p>Les coordonnées officielles seront prochainement disponibles.</p></div><div class="contact-actions"><a class="button button-secondary" href="../../index.html">Retour au portail</a></div></div></section>
+    <section class="inquiry section" id="renseignements">
+      <div class="container inquiry-grid">
+        <div class="inquiry-intro">
+          <p class="eyebrow">Fiche de renseignements</p>
+          <h2>Parlez-nous de votre parcours et de votre projet</h2>
+          <p>Complétez cette fiche afin de nous permettre de mieux comprendre votre profil et votre besoin. Notre équipe reviendra ensuite vers vous pour convenir d'une date de rendez-vous.</p>
+          <p class="inquiry-note">Aucun rendez-vous n'est réservé automatiquement à l'issue de cette fiche.</p>
+        </div>
+        <form class="inquiry-form" id="inquiry-form">
+          <div class="form-grid">
+            <label>Prénom <input type="text" name="prenom" autocomplete="given-name" required></label>
+            <label>Nom <input type="text" name="nom" autocomplete="family-name" required></label>
+            <label>Adresse e-mail <input type="email" name="email" autocomplete="email" required></label>
+            <label>Téléphone <input type="tel" name="telephone" autocomplete="tel"></label>
+            <label>Pays / ville <input type="text" name="localisation" autocomplete="address-level2"></label>
+            <label>Entreprise ou projet <input type="text" name="projet"></label>
+            <label class="form-full">Votre profil
+              <select name="profil" required><option value="">Sélectionnez</option><option>Entrepreneur·e</option><option>Innovateur·rice</option><option>Porteur·se de projet</option><option>Talent / professionnel·le</option><option>Partenaire / investisseur</option><option>Autre</option></select>
+            </label>
+            <label class="form-full">Secteur d'activité <input type="text" name="secteur" required></label>
+            <label class="form-full">Objet de votre demande
+              <select name="objet" required><option value="">Sélectionnez</option><option>Présenter mon projet</option><option>Développer mon réseau</option><option>Rechercher un partenariat</option><option>Explorer une collaboration internationale</option><option>Demander un accompagnement</option><option>Autre</option></select>
+            </label>
+            <label class="form-full">Présentez votre besoin <textarea name="message" rows="6" required></textarea></label>
+          </div>
+          <label class="form-consent"><input type="checkbox" required> J'accepte que mes informations soient utilisées pour traiter ma demande et me recontacter.</label>
+          <button class="button button-primary" type="submit">Envoyer ma fiche</button>
+          <p class="form-help">L'envoi ouvrira votre application de messagerie avec la fiche préremplie.</p>
+        </form>
+      </div>
+    </section>
+    <section class="contact section"><div class="container contact-card"><div><p class="eyebrow">Prochaine étape</p><h2>Nous revenons vers vous</h2><p>Après étude de votre fiche, notre équipe vous proposera une date de rendez-vous.</p></div><div class="contact-actions"><a class="button button-secondary" href="../../index.html">Retour au portail</a></div></div></section>
   </main>
   <script src="../fichiers-communs/interactions-pages.js"></script>
+  <script src="formulaire-renseignements.js"></script>
 </body>
 </html>
 
