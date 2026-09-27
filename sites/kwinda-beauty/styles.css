@@ -1,0 +1,260 @@
+.beauty-site {
+  --beauty-rose: #8d4c52;
+  --beauty-blush: #f5e7e4;
+}
+
+.beauty-heading {
+  max-width: none;
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+.price-search {
+  width: min(100%, 390px);
+  display: grid;
+  gap: 7px;
+  color: var(--muted);
+  font-size: 0.84rem;
+  font-weight: 700;
+}
+
+.price-search input {
+  width: 100%;
+  padding: 13px 16px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  outline: none;
+  background: white;
+}
+
+.price-search input:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(185, 136, 47, 0.12);
+}
+
+.price-filters {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 32px;
+  padding-bottom: 8px;
+  overflow-x: auto;
+}
+
+.price-filter {
+  flex: 0 0 auto;
+  padding: 10px 16px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: white;
+  color: var(--muted);
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.price-filter.active {
+  border-color: var(--text);
+  background: var(--text);
+  color: white;
+}
+
+.price-catalog {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.price-item {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 22px;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: white;
+}
+
+.price-item span {
+  color: var(--gold);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.price-item h3 {
+  margin: 3px 0 0;
+  font-size: 1rem;
+}
+
+.price-item strong {
+  flex: 0 0 auto;
+  color: var(--beauty-rose);
+  text-align: right;
+}
+
+.price-notice,
+.empty-results {
+  margin: 28px 0 0;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.home-service {
+  background: var(--beauty-blush);
+}
+
+.home-service-grid {
+  display: grid;
+  grid-template-columns: 0.82fr 1.18fr;
+  gap: clamp(40px, 7vw, 85px);
+  align-items: start;
+}
+
+.home-service-intro {
+  position: sticky;
+  top: 115px;
+}
+
+.home-service-intro > p:not(.eyebrow) {
+  color: var(--muted);
+}
+
+.home-points {
+  display: grid;
+  gap: 13px;
+  margin: 28px 0;
+}
+
+.home-points span {
+  display: flex;
+  gap: 13px;
+  align-items: center;
+}
+
+.home-points strong {
+  width: 34px;
+  height: 34px;
+  display: grid;
+  flex: 0 0 auto;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--beauty-rose);
+  color: white;
+}
+
+.home-service-intro .route-note {
+  padding: 17px;
+  border-left: 3px solid var(--gold);
+  background: rgba(255, 255, 255, 0.55);
+  font-size: 0.9rem;
+}
+
+.home-booking-form {
+  padding: clamp(28px, 5vw, 50px);
+  border-radius: var(--radius-lg);
+  background: white;
+  box-shadow: var(--shadow);
+}
+
+.home-booking-form label {
+  display: grid;
+  gap: 8px;
+  color: #39362f;
+  font-size: 0.92rem;
+  font-weight: 700;
+}
+
+.home-booking-form input,
+.home-booking-form select,
+.home-booking-form textarea {
+  width: 100%;
+  padding: 13px 15px;
+  border: 1px solid rgba(23, 22, 18, 0.17);
+  border-radius: 11px;
+  outline: none;
+  background: #fffdf8;
+  color: var(--text);
+}
+
+.home-booking-form input:focus,
+.home-booking-form select:focus,
+.home-booking-form textarea:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(185, 136, 47, 0.13);
+}
+
+.home-booking-form textarea {
+  resize: vertical;
+}
+
+.home-booking-form .form-consent {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  margin: 25px 0;
+  font-weight: 500;
+}
+
+.home-booking-form .form-consent input {
+  width: 18px;
+  flex: 0 0 auto;
+  margin-top: 4px;
+}
+
+.form-status {
+  min-height: 24px;
+  margin: 13px 0 0;
+  color: var(--beauty-rose);
+  font-weight: 700;
+}
+
+.deposit-card {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(35px, 6vw, 75px);
+  padding: clamp(38px, 6vw, 70px);
+  border-radius: var(--radius-lg);
+  background: #211b18;
+  color: white;
+}
+
+.deposit-card p:not(.eyebrow),
+.deposit-card li {
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.deposit-card ul {
+  display: grid;
+  gap: 15px;
+  margin: 0;
+  padding-left: 22px;
+}
+
+@media (max-width: 900px) {
+  .beauty-heading {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .home-service-grid,
+  .deposit-card {
+    grid-template-columns: 1fr;
+  }
+
+  .home-service-intro {
+    position: static;
+  }
+}
+
+@media (max-width: 650px) {
+  .price-catalog {
+    grid-template-columns: 1fr;
+  }
+
+  .price-item {
+    align-items: flex-start;
+  }
+}

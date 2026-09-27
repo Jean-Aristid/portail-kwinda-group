@@ -10,9 +10,10 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../../ressources/css/styles.css">
   <link rel="stylesheet" href="../fichiers-communs/styles-pages.css">
+  <link rel="stylesheet" href="styles.css">
 </head>
-<body class="company-site">
-  <header class="site-header"><div class="container header-inner"><a class="brand" href="../kwinda/index.html" aria-label="Retour aux catégories KWINDA"><img src="../../logos/entreprise_4.jpeg" alt="Logo KWINDA Beauty"><span>KWINDA Beauty</span></a><button class="menu-toggle" type="button" aria-label="Ouvrir le menu" aria-expanded="false"><span></span><span></span><span></span></button><nav class="main-nav" aria-label="Navigation principale"><a href="../../index.html">Portail</a><a href="../kwinda/index.html">KWINDA</a><a href="#services">Services</a><a href="#contact">Contact</a></nav></div></header>
+<body class="company-site beauty-site">
+  <header class="site-header"><div class="container header-inner"><a class="brand" href="../kwinda/index.html" aria-label="Retour aux catégories KWINDA"><img src="../../logos/entreprise_4.jpeg" alt="Logo KWINDA Beauty"><span>KWINDA Beauty</span></a><button class="menu-toggle" type="button" aria-label="Ouvrir le menu" aria-expanded="false"><span></span><span></span><span></span></button><nav class="main-nav" aria-label="Navigation principale"><a href="../../index.html">Portail</a><a href="#services">Services</a><a href="#tarifs">Tarifs</a><a href="#domicile">À domicile</a><a href="#contact">Contact</a></nav></div></header>
   <main>
     <section class="hero company-hero" id="accueil"><div class="container hero-content"><p class="eyebrow">KWINDA Beauty</p><h1>Beauté, bien-être et coiffure</h1><p class="hero-text">Des prestations personnalisées pour révéler votre beauté, renforcer votre confiance et prendre soin de votre bien-être.</p><a class="button button-primary" href="#contact">Prendre contact</a></div></section>
     <section class="service-showcase section" id="services">
@@ -29,9 +30,59 @@
         </div>
       </div>
     </section>
-    <section class="contact section" id="contact"><div class="container contact-card"><div><p class="eyebrow">Contact</p><h2>Échanger avec KWINDA Beauty</h2><p>Contactez-nous pour vous renseigner sur nos prestations.</p></div><div class="contact-actions"><a class="button button-primary" href="tel:+33749610580">07 49 61 05 80</a><a class="button button-secondary" href="mailto:kwindainfo@gmail.com">kwindainfo@gmail.com</a></div></div></section>
+    <section class="beauty-prices section" id="tarifs">
+      <div class="container">
+        <div class="section-heading beauty-heading">
+          <div><p class="eyebrow">Carte des prestations</p><h2>Nos soins et tarifs</h2></div>
+          <label class="price-search"><span>Rechercher une prestation</span><input id="price-search" type="search" placeholder="Massage, coiffure, visage…"></label>
+        </div>
+        <div class="price-filters" id="price-filters" aria-label="Filtrer les prestations"></div>
+        <div class="price-catalog" id="price-catalog"></div>
+        <p class="price-notice">Les tarifs indiqués « à partir de » peuvent varier selon la longueur, la technique ou les besoins constatés. Des cures personnalisées sont également disponibles.</p>
+      </div>
+    </section>
+
+    <section class="home-service section" id="domicile">
+      <div class="container home-service-grid">
+        <div class="home-service-intro">
+          <p class="eyebrow">KWINDA Beauty chez vous</p>
+          <h2>Demandez une prestation à domicile</h2>
+          <p>Nous organisons les rendez-vous par secteur afin de regrouper les clientes d'une même ville, d'un même département ou d'un même arrondissement et de maîtriser les temps de trajet.</p>
+          <div class="home-points"><span><strong>1</strong>Choisissez votre prestation et votre zone</span><span><strong>2</strong>Proposez vos disponibilités</span><span><strong>3</strong>Nous confirmons le créneau et l'acompte</span></div>
+          <p class="route-note">Le calcul automatique des trajets en voiture sera activé après raccordement à Google Maps. Dans l'intervalle, chaque demande est vérifiée manuellement.</p>
+        </div>
+        <form class="home-booking-form" id="home-booking-form">
+          <div class="form-grid">
+            <label>Prénom et nom<input name="nom" type="text" autocomplete="name" required></label>
+            <label>Téléphone<input name="telephone" type="tel" autocomplete="tel" required></label>
+            <label class="form-full">E-mail<input name="email" type="email" autocomplete="email" required></label>
+            <label class="form-full">Prestation souhaitée<select name="prestation" id="booking-service" required><option value="">Sélectionnez une prestation</option></select></label>
+            <label>Adresse<input name="adresse" type="text" autocomplete="street-address" required></label>
+            <label>Code postal<input name="code_postal" type="text" inputmode="numeric" autocomplete="postal-code" required></label>
+            <label>Ville<input name="ville" type="text" autocomplete="address-level2" required></label>
+            <label>Département<input name="departement" type="text" required></label>
+            <label>Date souhaitée<input name="date" type="date" required></label>
+            <label>Plage horaire<select name="horaire" required><option value="">Sélectionnez</option><option>Matin (9 h – 12 h)</option><option>Après-midi (12 h – 17 h)</option><option>Soirée (17 h – 20 h)</option></select></label>
+            <label class="form-full">Autres disponibilités ou informations<textarea name="message" rows="4" placeholder="Indiquez d'autres dates possibles, l'étage, l'accès, le stationnement…"></textarea></label>
+          </div>
+          <label class="form-consent"><input type="checkbox" required> J'accepte d'être recontactée pour l'organisation de cette prestation.</label>
+          <button class="button button-primary" type="submit">Envoyer ma demande</button>
+          <p class="form-status" id="booking-status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+
+    <section class="deposit section" id="acompte">
+      <div class="container deposit-card">
+        <div><p class="eyebrow">Réservation</p><h2>Acompte et règlement</h2><p>Après validation de votre zone et de votre créneau, un lien sécurisé vous sera envoyé pour régler l'acompte par carte bancaire.</p></div>
+        <ul><li>L'acompte confirme définitivement le rendez-vous.</li><li>L'acompte versé n'est pas remboursable, sous réserve des conditions légales applicables.</li><li>Le solde restant est à régler en espèces le jour de la prestation.</li></ul>
+      </div>
+    </section>
+    <section class="contact section" id="contact"><div class="container contact-card"><div><p class="eyebrow">Contact</p><h2>Échanger avec KWINDA Beauty</h2><p>Contactez-nous pour vous renseigner sur nos prestations.</p></div><div class="contact-actions"><a class="button button-primary" href="tel:+33749610580">07 49 61 05 80</a><a class="button button-secondary" href="tel:+33623847435">06 23 84 74 35</a><a class="button button-secondary" href="mailto:kwindainfo@gmail.com">kwindainfo@gmail.com</a></div></div></section>
   </main>
   <script src="../fichiers-communs/interactions-pages.js"></script>
+  <script src="configuration.js"></script>
+  <script src="beauty.js"></script>
 </body>
 </html>
 
