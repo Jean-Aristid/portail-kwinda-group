@@ -47,7 +47,12 @@
         <div class="home-service-intro">
           <p class="eyebrow">KWINDA Beauty chez vous</p>
           <h2>Demandez une prestation à domicile</h2>
-          <p>Nous organisons les rendez-vous par secteur afin de regrouper les clientes d'une même ville, d'un même département ou d'un même arrondissement et de maîtriser les temps de trajet.</p>
+          <p>Nous organisons les rendez-vous par secteur afin de regrouper les clientes d'une même zone et de maîtriser les temps de trajet.</p>
+          <div class="zone-schedule">
+            <div><strong>Lundi & mardi</strong><span>Paris 17e, 18e, 19e et alentours de Porte de la Chapelle</span></div>
+            <div><strong>Mercredi, jeudi & vendredi</strong><span>Toutes les villes de Seine-et-Marne (77)</span></div>
+            <div><strong>Dimanche</strong><span>Toutes les villes du Val-de-Marne (94)</span></div>
+          </div>
           <div class="home-points"><span><strong>1</strong>Choisissez votre prestation et votre zone</span><span><strong>2</strong>Proposez vos disponibilités</span><span><strong>3</strong>Nous confirmons le créneau et l'acompte</span></div>
           <p class="route-note">Le calcul automatique des trajets en voiture sera activé après raccordement à Google Maps. Dans l'intervalle, chaque demande est vérifiée manuellement.</p>
         </div>
@@ -57,12 +62,13 @@
             <label>Téléphone<input name="telephone" type="tel" autocomplete="tel" required></label>
             <label class="form-full">E-mail<input name="email" type="email" autocomplete="email" required></label>
             <label class="form-full">Prestation souhaitée<select name="prestation" id="booking-service" required><option value="">Sélectionnez une prestation</option></select></label>
+            <label class="form-full">Secteur de la prestation<select name="zone" id="booking-zone" required><option value="">Sélectionnez votre secteur</option><option value="paris_nord">Paris Nord et alentours de Porte de la Chapelle</option><option value="77">Seine-et-Marne (77) – toutes les villes</option><option value="94">Val-de-Marne (94) – toutes les villes</option></select></label>
             <label>Adresse<input name="adresse" type="text" autocomplete="street-address" required></label>
             <label>Code postal<input name="code_postal" type="text" inputmode="numeric" autocomplete="postal-code" required></label>
             <label>Ville<input name="ville" type="text" autocomplete="address-level2" required></label>
             <label>Département<input name="departement" type="text" required></label>
-            <label>Date souhaitée<input name="date" type="date" required></label>
-            <label>Plage horaire<select name="horaire" required><option value="">Sélectionnez</option><option>Matin (9 h – 12 h)</option><option>Après-midi (12 h – 17 h)</option><option>Soirée (17 h – 20 h)</option></select></label>
+            <div class="form-full booking-calendar-field"><span class="field-label">Date souhaitée</span><input name="date" id="booking-date" type="hidden" required><p id="calendar-help">Choisissez d'abord votre secteur pour afficher les dates disponibles.</p><div class="booking-calendar" id="booking-calendar"></div></div>
+            <label class="form-full">Plage horaire souhaitée<select name="horaire" required><option value="">Sélectionnez</option><option>Matin</option><option>Après-midi</option><option>Soirée</option></select><small>L'horaire exact sera proposé après vérification du trajet et des autres rendez-vous.</small></label>
             <label class="form-full">Autres disponibilités ou informations<textarea name="message" rows="4" placeholder="Indiquez d'autres dates possibles, l'étage, l'accès, le stationnement…"></textarea></label>
           </div>
           <label class="form-consent"><input type="checkbox" required> J'accepte d'être recontactée pour l'organisation de cette prestation.</label>

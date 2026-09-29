@@ -2,6 +2,15 @@
 
 Ce dossier contient le socle Google Apps Script du formulaire de prestations à domicile.
 
+## Règles géographiques intégrées
+
+- lundi et mardi : Paris Nord et alentours de Porte de la Chapelle ;
+- mercredi, jeudi et vendredi : toutes les villes de Seine-et-Marne (77) ;
+- dimanche : toutes les villes du Val-de-Marne (94) ;
+- samedi : aucune ouverture pour le moment.
+
+Le calendrier du site affiche automatiquement les cinq prochains mois. La durée provisoire d'une prestation est fixée à 40 minutes et la marge de stationnement à 15 minutes. Ces valeurs sont modifiables dans la configuration.
+
 ## Ressources à créer
 
 1. Un fichier Google Sheets avec un onglet nommé `Demandes domicile`.
@@ -39,7 +48,7 @@ Sans URL Apps Script, le formulaire reste utilisable et prépare un e-mail dans 
 
 ## Calcul des trajets
 
-La fonction `calculerTrajetsPourDate("2026-10-10")` calcule la distance et le temps de conduite entre les rendez-vous successifs d'une journée. Elle peut être lancée manuellement ou depuis un déclencheur Apps Script.
+La fonction `calculerTrajetsPourDate("2026-10-10")` calcule la distance et le temps de conduite entre les rendez-vous successifs d'une journée. Elle ajoute également la durée provisoire de la prestation et la marge de stationnement. Elle peut être lancée manuellement ou depuis un déclencheur Apps Script.
 
 Avant utilisation réelle, il faudra définir des horaires précis et valider l'ordre des rendez-vous. Le formulaire actuel recueille volontairement une plage horaire, car toute demande doit d'abord être confirmée.
 

@@ -99,8 +99,22 @@ const search = document.getElementById("price-search");
 const bookingService = document.getElementById("booking-service");
 const bookingForm = document.getElementById("home-booking-form");
 const bookingStatus = document.getElementById("booking-status");
+const bookingZone = document.getElementById("booking-zone");
+const bookingDate = document.getElementById("booking-date");
+const bookingCalendar = document.getElementById("booking-calendar");
+const calendarHelp = document.getElementById("calendar-help");
 const categories = [...new Set(beautyServices.map((service) => service.category))];
 let activeCategory = "Toutes";
+
+const zoneRules = {
+  paris_nord: {
+    label: "Paris Nord et alentours de Porte de la Chapelle",
+    days: [1, 2],
+    postcodes: ["75017", "75018", "75019", "93200", "93210", "93300", "93400"]
+  },
+  "77": { label: "Seine-et-Marne (77)", days: [3, 4, 5] },
+  "94": { label: "Val-de-Marne (94)", days: [0] }
+};
 
 function renderCatalog() {
   const query = search.value.trim().toLocaleLowerCase("fr");
@@ -138,14 +152,91 @@ beautyServices.forEach((service) => {
 search.addEventListener("input", renderCatalog);
 renderCatalog();
 
-bookingForm.querySelector('input[name="date"]').min = new Date().toISOString().split("T")[0];
+function toLocalIso(date) {
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const day = String(date.getDate()).padStart(2, "0");
+  return `${year}-${month}-${day}`;
+}
+
+function renderBookingCalendar() {
+  bookingCalendar.innerHTML = "";
+  bookingDate.value = "";
+  const rule = zoneRules[bookingZone.value];
+  if (!rule) {
+    calendarHelp.textContent = "Choisissez d'abord votre secteur pour afficher les dates disponibles.";
+    return;
+  }
+
+  calendarHelp.textContent = `Dates proposées pour ${rule.label}. Le samedi reste fermé pour le moment.`;
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  const monthCount = Number(window.KWINDA_BEAUTY_CONFIG?.rollingCalendarMonths || 5);
+
+  for (let offset = 0; offset < monthCount; offset += 1) {
+    const monthStart = new Date(today.getFullYear(), today.getMonth() + offset, 1);
+    const monthEnd = new Date(today.getFullYear(), today.getMonth() + offset + 1, 0);
+    const dates = [];
+
+    for (let day = 1; day <= monthEnd.getDate(); day += 1) {
+      const date = new Date(monthStart.getFullYear(), monthStart.getMonth(), day);
+      if (date >= today && rule.days.includes(date.getDay())) dates.push(date);
+    }
+
+    const month = document.createElement("section");
+    month.className = "calendar-month";
+    month.innerHTML = `<h3>${new Intl.DateTimeFormat("fr-FR", { month: "long", year: "numeric" }).format(monthStart)}</h3><div class="calendar-dates"></div>`;
+    const datesContainer = month.querySelector(".calendar-dates");
+
+    dates.forEach((date) => {
+      const button = document.createElement("button");
+      button.type = "button";
+      button.className = "calendar-date";
+      button.dataset.date = toLocalIso(date);
+      button.innerHTML = `<span>${new Intl.DateTimeFormat("fr-FR", { weekday: "short" }).format(date)}</span><strong>${date.getDate()}</strong>`;
+      button.addEventListener("click", () => {
+        bookingCalendar.querySelectorAll(".calendar-date").forEach((item) => item.classList.remove("selected"));
+        button.classList.add("selected");
+        bookingDate.value = button.dataset.date;
+        bookingStatus.textContent = "";
+      });
+      datesContainer.appendChild(button);
+    });
+    bookingCalendar.appendChild(month);
+  }
+}
+
+bookingZone.addEventListener("change", renderBookingCalendar);
 
 bookingForm.addEventListener("submit", async (event) => {
   event.preventDefault();
   if (!bookingForm.reportValidity()) return;
 
+  if (!bookingDate.value) {
+    bookingStatus.textContent = "Veuillez choisir une date dans le calendrier.";
+    bookingCalendar.scrollIntoView({ behavior: "smooth", block: "center" });
+    return;
+  }
+
   const data = Object.fromEntries(new FormData(bookingForm).entries());
   const config = window.KWINDA_BEAUTY_CONFIG || {};
+  const postcode = String(data.code_postal).replace(/\s/g, "");
+  const rule = zoneRules[data.zone];
+
+  if ((data.zone === "77" && !postcode.startsWith("77")) || (data.zone === "94" && !postcode.startsWith("94"))) {
+    bookingStatus.textContent = `Le code postal ne correspond pas au secteur ${rule.label}.`;
+    return;
+  }
+
+  if (data.zone === "paris_nord" && (postcode.startsWith("77") || postcode.startsWith("94"))) {
+    bookingStatus.textContent = "Ce code postal correspond à un autre secteur. Veuillez modifier votre choix.";
+    return;
+  }
+
+  data.zoneLabel = rule.label;
+  data.zoneValidation = data.zone !== "paris_nord" || rule.postcodes.includes(postcode) ? "Zone reconnue" : "Proximité à vérifier";
+  data.dureeEstimee = Number(config.defaultServiceDurationMinutes || 40);
+  data.margeStationnement = Number(config.parkingBufferMinutes || 15);
 
   if (config.appsScriptUrl) {
     bookingStatus.textContent = "Envoi de votre demande…";
@@ -157,6 +248,7 @@ bookingForm.addEventListener("submit", async (event) => {
         body: JSON.stringify({ ...data, source: "KWINDA Beauty à domicile" })
       });
       bookingForm.reset();
+      renderBookingCalendar();
       bookingStatus.textContent = "Votre demande a bien été transmise. Nous reviendrons vers vous pour confirmer le rendez-vous.";
     } catch {
       bookingStatus.textContent = "L'envoi automatique n'est pas disponible. Veuillez nous contacter par téléphone ou par e-mail.";
@@ -171,10 +263,12 @@ bookingForm.addEventListener("submit", async (event) => {
     `Téléphone : ${data.telephone}`,
     `E-mail : ${data.email}`,
     `Prestation : ${data.prestation}`,
+    `Secteur : ${data.zoneLabel} (${data.zoneValidation})`,
     `Adresse : ${data.adresse}, ${data.code_postal} ${data.ville}`,
     `Département : ${data.departement}`,
     `Date : ${data.date}`,
-    `Horaire : ${data.horaire}`,
+    `Horaire souhaité : ${data.horaire}`,
+    `Durée provisoire : ${data.dureeEstimee} min + ${data.margeStationnement} min de marge de stationnement`,
     `Informations : ${data.message || "Aucune"}`
   ].join("\n");
 
